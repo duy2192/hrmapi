@@ -15,13 +15,14 @@ export class Position {
 
   @Column({
     unique: true,
+    default:""
   })
   ten: string;
 
   @OneToMany(type => PositionDetail, userGroup => userGroup.cv)
   ctcv: PositionDetail[];
 
-  @Column()
+  @Column({type:"text",default:''})
   mota: string;
 
   @Column('int', { default: 1 })

@@ -19,7 +19,7 @@ export class Job {
   @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   ngaybatdau: string;
 
-  @Column()
+  @Column({type:"text",nullable:true})
   ghichu: string;
 
   @DeleteDateColumn()

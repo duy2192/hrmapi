@@ -7,22 +7,24 @@ export class User {
     id: number
 
     @Column({
-        unique: true
+        unique: true,
+        default:''
     })
     username: string
     
     @Column({
-        unique: true
+        unique: true,
+        default:""
     })
     email: string
  
-    @Column()
+    @Column({default:''})
     name: string
 
-    @Column("text")
+    @Column({type:"text",default:''})
     password: string
 
-    @Column("text")
+    @Column({type:"text",default:''})
     resetpwdtoken: string
 
     @Column('int', { default: 1 })

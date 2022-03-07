@@ -13,7 +13,7 @@ export class Level {
   })
   ten: string;
 
-  @Column()
+  @Column({type:'text',nullable:true})
   mota: string;
 
   @Column('int', { default: 1 })

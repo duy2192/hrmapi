@@ -53,37 +53,37 @@ export class Personnel {
   @OneToMany(() => Contract, (contract) => contract.ns)
   hopdong?: Contract[];
 
-  @Column()
+  @Column({nullable:true})
   ten: string;
 
-  @Column()
+  @Column({nullable:true})
   gioitinh: string;
 
-  @Column({ type: 'text' })
+  @Column({ type: 'text',default:"" })
   avatar?: string;
   
-  @Column({ type: 'text' })
+  @Column({ type: 'text',default:"" })
   nguyenquan: string;
 
   @Column({ type: 'date' })
   ngaysinh: string;
 
-  @Column()
+  @Column({nullable:true})
   dantoc: string;
 
-  @Column()
+  @Column({nullable:true})
   tongiao: string;
 
-  @Column()
+  @Column({nullable:true})
   quoctich: string;
 
-  @Column()
+  @Column({default:""})
   cccd: string;
 
   @Column({ type: 'date' })
   ngaycap: string;
 
-  @Column()
+  @Column({nullable:true})
   noicap: string;
 
   @Column()
@@ -92,22 +92,22 @@ export class Personnel {
   @Column()
   tddt?: string;
 
-  @Column()
+  @Column({default:""})
   email: string;
 
-  @Column()
+  @Column({default:""})
   sdt: string;
 
-  @Column()
+  @Column({default:''})
   tp: string;
 
-  @Column()
+  @Column({default:''})
   quan: string;
 
-  @Column()
+  @Column({default:''})
   phuong: string;
 
-  @Column()
+  @Column({default:''})
   diachi: string;
 
   @Column('int', { default: 1 })

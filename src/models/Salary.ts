@@ -11,13 +11,13 @@ export class Salary {
   @Column({type:"date", default: () => "CURRENT_TIMESTAMP"})
   ngaybatdau: string;
   
-  @Column({type:"float"})
+  @Column({type:"float",default:0})
   hsl: number;
  
-  @Column({type:"float"})
+  @Column({type:"float",default:0})
   hspc: number;
   
-  @Column({type:"float"})
+  @Column({type:"float",default:0})
   luongcb: number;
 
   @Column('int', { default: 1 })

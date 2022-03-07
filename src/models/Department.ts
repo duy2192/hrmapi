@@ -13,15 +13,18 @@ export class Department {
     ns: Personnel[]
 
     @Column({
-        unique: true
+        unique: true,
+        default:""
     })
     ten: string
     
     @Column({
+        nullable:true
     })
     mota: string
 
     @Column({
+        nullable:true
     })
     diachi: string
 

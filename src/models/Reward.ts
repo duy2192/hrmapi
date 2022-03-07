@@ -11,7 +11,7 @@ export class Reward {
   @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})
   ngayqd: string;
 
-  @Column()
+  @Column({default:''})
   hinhthuc: string;
 
   @Column({type:"text"})

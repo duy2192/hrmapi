@@ -9,13 +9,13 @@ export class Insurance {
   @ManyToOne(() => Personnel, personnel => personnel.baohiem)
   ns: Personnel;
 
-  @Column()
+  @Column({nullable:true})
   loaibh: string;
 
-  @Column()
+  @Column({nullable:true})
   sothe: string;
 
-  @Column({type:"text"})
+  @Column({type:"text",default:""})
   noidk: string;
 
   @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})

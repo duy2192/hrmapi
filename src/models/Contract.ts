@@ -8,19 +8,19 @@ export class Contract {
   @ManyToOne(() => Personnel, personnel => personnel.id)
   ns: Personnel;
 
-  @Column()
+  @Column({type:"text",default:''})
   loaihd: string;
 
   @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})
   ngayky: string;
 
-  @Column({type:"date"})
+  @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})
   ngaykt: string;
 
-  @Column({type:"text"})
+  @Column({type:"text",default:""})
   ghichu: string;
 
-  @Column({type:"text"})
+  @Column({type:"text",nullable:true})
   file: string;
 
   @DeleteDateColumn()

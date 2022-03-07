@@ -14,7 +14,7 @@ export class PositionDetail {
 
   @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   ngaybonhiem: string;
-  @Column()
+  @Column({type:"text",default:''})
   ghichu: string;
 
   @DeleteDateColumn()

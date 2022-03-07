@@ -11,10 +11,10 @@ export class Discipline {
   @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})
   ngayqd: string;
 
-  @Column()
+  @Column({nullable:true})
   hinhthuc: string;
 
-  @Column({type:"text"})
+  @Column({type:"text",default:""})
   noidung: string;
 
 

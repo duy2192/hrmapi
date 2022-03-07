@@ -12,10 +12,10 @@ export class LevelDetail {
   @ManyToOne(() => Level, (pos) => pos.ctlv, { primary: true })
   lv: Level;
   
-  @Column()
+  @Column({nullable:true})
   noidaotao: string;
 
-  @Column()
+  @Column({nullable:true})
   chuyennganh: string;
 
   @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
@@ -24,7 +24,7 @@ export class LevelDetail {
   @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
   denngay: string;
 
-  @Column()
+  @Column({nullable:true})
   ketqua: string;
 
   @DeleteDateColumn()

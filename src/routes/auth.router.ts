@@ -13,6 +13,7 @@ router.post('/login', controller.login);
 router.post('/forgotpwd', controller.forgotPwd);
 router.post('/resetpwd', controller.resetPwd);
 router.patch('/changepwd', controller.changePwd);
+router.patch('/changerole', controller.changeRole);
 
 
 export default router

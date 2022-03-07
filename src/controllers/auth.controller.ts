@@ -9,6 +9,7 @@ import {
   validateToken,
   getUser,
   getAllUser,
+  changeRole
 } from '../services/auth.service';
 import {
   createUserSchema,
@@ -123,9 +124,21 @@ export default class UserController {
       const input: any = {
         token: req.query.token,
       };
-      console.log(req.query);
       checkTokenSchema.validateSync(input);
       await validateToken(input);
+      done(res, 'Success!');
+    } catch (e) {
+      log.error((e as Error).message);
+      error(res, (e as Error).message);
+    }
+  }
+  async changeRole(req: Request, res: Response) {
+    try {
+      const input: any = {
+        id: req.body.id,
+        role: req.body.role,
+      };
+      await changeRole(input);
       done(res, 'Success!');
     } catch (e) {
       log.error((e as Error).message);

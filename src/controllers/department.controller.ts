@@ -33,7 +33,7 @@ export default class DepartmentController {
   async editDepartment(req: Request, res: Response) {
     try {
       const data = {
-        id: req.params.id,
+        id: req.body.id,
         ten: req.body.ten,
         mota: req.body.mota,
       };

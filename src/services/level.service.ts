@@ -48,6 +48,7 @@ export const createLevel = async (input: { ten: string; mota }) => {
 };
 export const editLevel = async (input: { id: string; ten: string; mota }) => {
   try {
+    
     const repo = getRepository(Level);
     let level = await repo.findOne({ where: { id: input.id } });
     if(!level) throw "Không tìm thấy trình độ!"
@@ -62,16 +63,13 @@ export const editLevel = async (input: { id: string; ten: string; mota }) => {
     throw new Error(error as string);
   }
 };
-export const removeLevel = async (input: { id: string;}) => {
+export const removeLevel = async (input) => {
   try {
     const repo = getRepository(Level);
-    let level = await repo.findOne({ where: { id: input.id } });
-    if(!level) throw "Không tìm thấy trình độ!"
-    level.trangthai=1
-    await repo.save(level);
-    return level;
+    let level =await  repo.findOne(input.id);
+    await repo.softDelete(level);
+    return 
   } catch (error) {
-    if (error.code === 'ER_DUP_ENTRY') throw new Error('Trùng tên trình độ!' as string);
 
     throw new Error(error as string);
   }

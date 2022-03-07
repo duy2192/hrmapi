@@ -12,9 +12,11 @@ export default class PersonnelController {
           _page:req.query._page||1,
           search:req.query.search||"",
           status:req.query.status||1,
-          department:req.query.department||0,
-          level:req.query.level||0,
-          position:req.query.position||0,
+          department:req.query.department,
+          level:req.query.level,
+          position:req.query.position,
+          _sort:req.query._sort||"ten:ASC",
+          gender:req.query.gender,
         }
         getPersonnelSchema.validateSync(filters)
           const personnel = await getAllPersonnel(filters);
@@ -119,7 +121,7 @@ export default class PersonnelController {
       }
    async updatePersonnel(req: Request, res: Response) {
         try {
-          updatePersonnelSchema.validateSync(req.body)
+          updatePersonnelSchema.validateSync(req.body);
           const personnel = await updatePersonnel(req.body);
           success(res,personnel);
         } catch (e) {

@@ -61,15 +61,15 @@ export const editDepartment = async (input: { id: string; ten: string; mota }) =
     throw new Error(error as string);
   }
 };
-export const removeDepartment = async (input: { id: string }) => {
+export const removeDepartment = async (input) => {
   try {
     const repo = getRepository(Department);
-    let dep = await repo.findOne({ where: { id: input.id } });
-    if (!dep) throw 'Không tìm thấy đơn vị!';
-    dep.trangthai = 1;
-    await repo.save(dep);
-    return dep;
+    let department =await  repo.findOne(input.id);
+    await repo.softDelete(department);
+    return 
   } catch (error) {
+
     throw new Error(error as string);
   }
 };
+

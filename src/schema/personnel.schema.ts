@@ -15,9 +15,7 @@ export const getPersonnelSchema = yup.object({
   search: yup.string(),
   _limit: yup.number(),
   _page: yup.number(),
-  position: yup.number(),
-  level: yup.number(),
-  department: yup.number(),
+
 });
 export const addLevelSchema = yup.object({
   ns: yup.string().required('Chưa chọn nhân sự!'),

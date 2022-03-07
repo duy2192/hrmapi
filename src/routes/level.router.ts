@@ -6,7 +6,7 @@ const controller = new Controller();
 
 router.get('/', controller.getLevel);
 router.post('/', controller.createLevel);
-router.patch('/:id', controller.editLevel);
+router.patch('/', controller.editLevel);
 router.delete('/:id', controller.removeLevel);
 
 

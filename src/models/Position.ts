@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column,OneToMany,DeleteDateColumn } from 'typeorm';
 import { Personnel } from '.';
 import { PositionDetail } from './PositionDetail';
+import { Job } from './Job';
 @Entity()
 export class Position {
   @PrimaryGeneratedColumn()
@@ -8,6 +9,10 @@ export class Position {
 
   @OneToMany(() => Personnel, (level) => level.dv)
   ns: Personnel[];
+
+  @OneToMany(() => Job, job => job.cv)
+  qtlv: Job[]
+
   @Column({
     unique: true,
   })

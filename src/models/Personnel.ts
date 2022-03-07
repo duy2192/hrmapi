@@ -16,6 +16,7 @@ import { Reward } from './Reward';
 import { Discipline } from './Discipline';
 import { Job } from './Job';
 import { Contract } from './Contract';
+import { Insurance } from './Insurance';
 
 @Entity()
 export class Personnel {
@@ -46,6 +47,9 @@ export class Personnel {
   @OneToMany(() => Discipline, (discipline) => discipline.ns)
   kyluat?: Discipline[];
 
+  @OneToMany(() => Insurance, (ins) => ins.ns)
+  baohiem?: Insurance[];
+
   @OneToMany(() => Contract, (contract) => contract.ns)
   hopdong?: Contract[];
 
@@ -57,6 +61,7 @@ export class Personnel {
 
   @Column({ type: 'text' })
   avatar?: string;
+  
   @Column({ type: 'text' })
   nguyenquan: string;
 

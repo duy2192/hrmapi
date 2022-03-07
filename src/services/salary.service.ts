@@ -27,7 +27,7 @@ export const getSalary = async (input) => {
       relations:["ns"],
       order: {
         id: 'DESC',
-      },
+      }, 
 
     }) 
     return salary;

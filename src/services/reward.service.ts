@@ -24,7 +24,7 @@ export const getReward= async (input) => {
       },
       order: {
         id: 'DESC',
-      },
+      }, 
     })
     return reward;
   } catch (error) {

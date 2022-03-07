@@ -26,7 +26,7 @@ export const createContract= async (input) => {
 export const getAllContract = async (input) => {
   try {
     const repo = getRepository(Contract);
-    const job=repo.find({
+    const job=await repo.find({
       where:{
         ns:input.id
       },

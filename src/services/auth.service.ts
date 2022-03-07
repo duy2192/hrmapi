@@ -170,3 +170,16 @@ export const validateToken = async (input: { token: string }) => {
     throw new Error(error as string);
   }
 };
+
+export const changeRole = async (input) => {
+  try {
+    const repo = getRepository(User);
+    const user = await repo.findOne({ where: [{ id: input.id }, { email: input.email }] });
+    if (!user) throw 'Tài khoản không tồn tại!';
+    user.role=input.role
+    repo.save(user);
+    return;
+  } catch (error) {
+    throw new Error(error as string);
+  }
+};

@@ -1,11 +1,10 @@
 import { Router } from 'express';
-import Controller from '../controllers/salary.controller';
+import Controller from '../controllers/statistical.controller';
 
 const router = Router();
 const controller = new Controller();
 
-router.post('/', controller.createSalary);
-router.get('/:id', controller.getSalary);
+router.get('/', controller.exportHRFile);
 
 
 export default router; 

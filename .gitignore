@@ -3,3 +3,4 @@ build/
 yarn.lock
 .env
 public/uploads/data/*
+yarn-error.log

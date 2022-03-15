@@ -18,96 +18,99 @@ import { Job } from './Job';
 import { Contract } from './Contract';
 import { Insurance } from './Insurance';
 
-@Entity()
+@Entity('personnel')
 export class Personnel {
   @PrimaryGeneratedColumn()
   id?: number;
 
-  @OneToMany(() => Level, (level) => level.id)
+  @OneToMany(() => Level, (level) => level.id,{nullable: true})
   lv?: Level[];
 
-  @ManyToOne((type) => Department, (dep) => dep.id)
+  @ManyToOne((type) => Department, (dep) => dep.id,{nullable: true})
   dv: Department;
 
-  @OneToMany((type) => PositionDetail, (pos) => pos.ns)
+  @OneToMany((type) => PositionDetail, (pos) => pos.ns,{nullable: true})
   ctcv?: PositionDetail[];
 
-  @OneToMany((type) => LevelDetail, (ctlv) => ctlv.ns)
+  @OneToMany((type) => LevelDetail, (ctlv) => ctlv.ns,{nullable: true})
   ctlv?: LevelDetail[];
 
-  @OneToMany(() => Salary, (salary) => salary.ns)
+  @OneToMany(() => Salary, (salary) => salary.ns,{nullable: true})
   luong?: Salary[];
 
-  @OneToMany(() => Job, (work) => work.ns)
+  @OneToMany(() => Job, (work) => work.ns,{nullable: true})
   qtlv?: Job[];
 
-  @OneToMany(() => Reward, (reward) => reward.ns)
+  @OneToMany(() => Reward, (reward) => reward.ns,{nullable: true})
   khenthuong?: Reward[];
 
-  @OneToMany(() => Discipline, (discipline) => discipline.ns)
+  @OneToMany(() => Discipline, (discipline) => discipline.ns,{nullable: true})
   kyluat?: Discipline[];
 
-  @OneToMany(() => Insurance, (ins) => ins.ns)
+  @OneToMany(() => Insurance, (ins) => ins.ns,{nullable: true})
   baohiem?: Insurance[];
 
-  @OneToMany(() => Contract, (contract) => contract.ns)
+  @OneToMany(() => Contract, (contract) => contract.ns,{nullable: true})
   hopdong?: Contract[];
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   ten: string;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   gioitinh: string;
 
-  @Column({ type: 'text',default:"" })
+  @Column({ type: 'text',  })
   avatar?: string;
-  
-  @Column({ type: 'text',default:"" })
+
+  @Column({ type: 'text',  })
   nguyenquan: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp' })
   ngaysinh: string;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   dantoc: string;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   tongiao: string;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   quoctich: string;
 
-  @Column({default:""})
+  @Column(
+    { default: '', 
+    // unique: true 
+  })
   cccd: string;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp' })
   ngaycap: string;
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   noicap: string;
 
-  @Column()
+  @Column({ default: '' })
   tdvh?: string;
 
-  @Column()
+  @Column({ default: '' })
   tddt?: string;
 
-  @Column({default:""})
+  @Column({ default: '' })
   email: string;
 
-  @Column({default:""})
+  @Column({ default: '' })
   sdt: string;
 
-  @Column({default:''})
+  @Column({ default: '' })
   tp: string;
 
-  @Column({default:''})
+  @Column({ default: '' })
   quan: string;
 
-  @Column({default:''})
+  @Column({ default: '' })
   phuong: string;
 
-  @Column({default:''})
+  @Column({ default: '' })
   diachi: string;
 
   @Column('int', { default: 1 })
@@ -119,4 +122,3 @@ export class Personnel {
   @UpdateDateColumn()
   updatedAt?: Date;
 }
-  

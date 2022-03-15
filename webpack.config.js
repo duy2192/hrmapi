@@ -4,7 +4,7 @@ const CopyPlugin =require("copy-webpack-plugin")
 const webpack = require('webpack'); // only add this if you don't have yet
 require('dotenv').config({ path: './.env' }); 
 module.exports ={
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.ts',
   devtool: 'inline-source-map',
   node: {
@@ -22,22 +22,17 @@ module.exports ={
 
         ],
       },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-        },
-      },
-      {
-        test: /\.json$/,
-        use: ['webpack-json-access-optimizer'],
-        type: 'json',
-      },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //   },
+      // },
     ],
   },
   resolve: {
-    extensions: ['.ts', '.js', '.json'],
+    extensions: ['.ts', '.js'],
     fallback: {
       "fs": false,
       "tls": false,

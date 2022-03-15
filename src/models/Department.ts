@@ -1,15 +1,15 @@
 import { Entity, PrimaryGeneratedColumn, Column,OneToMany,DeleteDateColumn } from "typeorm";
 import {Job} from './Job'
 import {Personnel} from './Personnel'
-@Entity()
+@Entity('department')
 export class Department {
 
     @PrimaryGeneratedColumn()
     id: number
 
-    @OneToMany(() => Job, work => work.dv)
+    @OneToMany(() => Job, work => work.dv,{nullable:true})
     qtlv: Job[]
-    @OneToMany(() => Personnel, personnel => personnel.dv)
+    @OneToMany(() => Personnel, personnel => personnel.dv,{nullable:true})
     ns: Personnel[]
 
     @Column({

@@ -14,6 +14,8 @@ router.post('/forgotpwd', controller.forgotPwd);
 router.post('/resetpwd', controller.resetPwd);
 router.patch('/changepwd', controller.changePwd);
 router.patch('/changerole', controller.changeRole);
+router.patch('/block/:id', controller.blockAccount);
+router.get('/unblock/:id', controller.unBlockAccount);
 
 
 export default router

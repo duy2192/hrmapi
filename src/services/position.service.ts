@@ -42,8 +42,8 @@ export const createPosition = async (input: { ten: string; mota }) => {
   try {
     const repo = getRepository(Position);
     let pos = new Position();
-    pos.ten = input.ten;
-    pos.mota = input.mota;
+    pos.ten = input.ten?.replace( /  +/g, ' ' );
+    pos.mota = input.mota?.replace( /  +/g, ' ' );
 
     await repo.save(pos);
     return pos;
@@ -57,8 +57,8 @@ export const updatePosition = async (input) => {
   try {
     const repo = getRepository(Position);
     let pos =await  repo.findOne(input.id);
-    pos.ten = input.ten;
-    pos.mota = input.mota;
+    pos.ten = input.ten?.replace( /  +/g, ' ' );
+    pos.mota = input.mota?.replace( /  +/g, ' ' );
     await repo.save(pos);
     return pos;
   } catch (error) {

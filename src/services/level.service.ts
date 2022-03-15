@@ -35,8 +35,8 @@ export const createLevel = async (input: { ten: string; mota }) => {
   try {
     const repo = getRepository(Level);
     let level = new Level();
-    level.ten = input.ten;
-    level.mota = input.mota;
+    level.ten = input.ten?.replace( /  +/g, ' ' );
+    level.mota = input.mota?.replace( /  +/g, ' ' );
 
     await repo.save(level);
     return level;
@@ -52,8 +52,8 @@ export const editLevel = async (input: { id: string; ten: string; mota }) => {
     const repo = getRepository(Level);
     let level = await repo.findOne({ where: { id: input.id } });
     if(!level) throw "Không tìm thấy trình độ!"
-    level.ten = input.ten;
-    level.mota = input.mota;
+    level.ten = input.ten?.replace( /  +/g, ' ' );
+    level.mota = input.mota?.replace( /  +/g, ' ' );
 
     await repo.save(level);
     return level;

@@ -1,15 +1,15 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn,DeleteDateColumn } from 'typeorm';
 import { Personnel } from './Personnel';
 import { Level } from './Level';
-@Entity()
+@Entity('level_detail')
 export class LevelDetail {
   @PrimaryGeneratedColumn()
   id?: number;
   
-  @ManyToOne(() => Personnel, (personnel) => personnel.ctlv, { primary: true })
+  @ManyToOne(() => Personnel, (personnel) => personnel.ctlv, { primary: true,nullable:true })
   ns: Personnel;
 
-  @ManyToOne(() => Level, (pos) => pos.ctlv, { primary: true })
+  @ManyToOne(() => Level, (pos) => pos.ctlv, { primary: true,nullable:true })
   lv: Level;
   
   @Column({nullable:true})
@@ -18,10 +18,10 @@ export class LevelDetail {
   @Column({nullable:true})
   chuyennganh: string;
 
-  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   tungay: string;
 
-  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   denngay: string;
 
   @Column({nullable:true})

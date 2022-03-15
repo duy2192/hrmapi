@@ -8,7 +8,7 @@ export const createContract= async (input) => {
     contract={
         ...input
     }
-
+ 
     await repo.save(contract);
     // await repo.update({
     //   id:Not(contract.id),
@@ -21,7 +21,7 @@ export const createContract= async (input) => {
   } catch (error) {
     throw new Error(error as string);
   }
-};
+}; 
 
 export const getAllContract = async (input) => {
   try {

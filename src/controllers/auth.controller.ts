@@ -9,7 +9,9 @@ import {
   validateToken,
   getUser,
   getAllUser,
-  changeRole
+  changeRole,
+  blockAccount,
+  unBlockAccount
 } from '../services/auth.service';
 import {
   createUserSchema,
@@ -61,8 +63,7 @@ export default class UserController {
     try {
       loginSchema.validateSync(req.body);
       const input = {
-        email: req.body.identifier,
-        username: req.body.identifier,
+        identifier: req.body.identifier,
         password: req.body.password,
       };
       const user = await login(input);
@@ -139,6 +140,31 @@ export default class UserController {
         role: req.body.role,
       };
       await changeRole(input);
+      done(res, 'Success!');
+    } catch (e) {
+      log.error((e as Error).message);
+      error(res, (e as Error).message);
+    }
+  }
+  async blockAccount(req: Request, res: Response) {
+    try {
+      const input: any = {
+        id: req.params.id,
+      };
+      await blockAccount(input);
+      done(res, 'Success!');
+    } catch (e) {
+      log.error((e as Error).message);
+      error(res, (e as Error).message);
+    }
+  }
+  async unBlockAccount(req: Request, res: Response) {
+    try {
+      const input: any = {
+        id: req.params.id,
+        key:req.query.key
+      };
+      await unBlockAccount(input);
       done(res, 'Success!');
     } catch (e) {
       log.error((e as Error).message);

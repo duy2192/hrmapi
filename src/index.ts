@@ -1,6 +1,6 @@
 import * as dotenv from 'dotenv';
 dotenv.config();
-import {createConnection} from "typeorm";
+import {createConnection} from "./config/db";
 import express,{Application} from 'express';
 import log from './utils/logger';
 import userRouter from './routes/auth.router';
@@ -15,11 +15,11 @@ import rewardRouter from './routes/reward.router';
 import disciplineRouter from './routes/discipline.router';
 import jobRouter from './routes/job.router';
 import statisticalRouter from './routes/statistical.router';
-import uploadRouter from './routes/upload.router';
+import uploadRouter from './routes/upload.router'; 
 import insuranceRouter from './routes/insurance.router';
-import downloadRouter from './routes/download.router';
+import downloadRouter from './routes/download.router'; 
 import utilsRouter from './routes/utils.router';
-import cors from 'cors';
+import cors from 'cors'; 
 import reqlogger from "./middleware/logger.middleware"
 import "reflect-metadata";
 
@@ -52,4 +52,4 @@ createConnection().then(async () => {
   app.listen(PORT, () => {
     log.info('Server starting on port ' + PORT);
   });
-}).catch(error => log.error(error));
+}).catch(error => log.error(error)); 

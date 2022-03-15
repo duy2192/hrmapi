@@ -34,8 +34,8 @@ export const createDepartment = async (input: { ten: string; mota }) => {
   try {
     const repo = getRepository(Department);
     let dep = new Department();
-    dep.ten = input.ten;
-    dep.mota = input.mota;
+    dep.ten = input.ten?.replace( /  +/g, ' ' );
+    dep.mota = input.mota?.replace( /  +/g, ' ' );
 
     await repo.save(dep);
     return dep;
@@ -50,8 +50,8 @@ export const editDepartment = async (input: { id: string; ten: string; mota }) =
     const repo = getRepository(Department);
     let dep = await repo.findOne({ where: { id: input.id } });
     if (!dep) throw 'Không tìm thấy đơn vị!';
-    dep.ten = input.ten;
-    dep.mota = input.mota;
+    dep.ten = input.ten?.replace( /  +/g, ' ' );
+    dep.mota = input.mota?.replace( /  +/g, ' ' );
 
     await repo.save(dep);
     return dep;

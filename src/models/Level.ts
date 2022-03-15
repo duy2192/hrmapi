@@ -1,11 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, DeleteDateColumn } from 'typeorm';
 import { LevelDetail } from './LevelDetail';
-@Entity()
+@Entity('level')
 export class Level {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany((type) => LevelDetail, (userGroup) => userGroup.lv)
+  @OneToMany((type) => LevelDetail, (userGroup) => userGroup.lv,{nullable:true})
   ctlv: LevelDetail[];
 
   @Column({

@@ -2,15 +2,15 @@ import { Entity, PrimaryGeneratedColumn, Column,OneToMany,DeleteDateColumn } fro
 import { Personnel } from '.';
 import { PositionDetail } from './PositionDetail';
 import { Job } from './Job';
-@Entity()
+@Entity('position')
 export class Position {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => Personnel, (level) => level.dv)
+  @OneToMany(() => Personnel, (level) => level.dv,{nullable:true})
   ns: Personnel[];
 
-  @OneToMany(() => Job, job => job.cv)
+  @OneToMany(() => Job, job => job.cv,{nullable:true})
   qtlv: Job[]
 
   @Column({
@@ -22,7 +22,7 @@ export class Position {
   @OneToMany(type => PositionDetail, userGroup => userGroup.cv)
   ctcv: PositionDetail[];
 
-  @Column({type:"text",default:''})
+  @Column({type:"text"})
   mota: string;
 
   @Column('int', { default: 1 })

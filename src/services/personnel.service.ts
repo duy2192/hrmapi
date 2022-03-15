@@ -9,16 +9,27 @@ import { LevelDetail } from '../models/LevelDetail';
 export const getAllPersonnel = async (input) => {
   try {
     const repo = getRepository(Personnel);
-    const condition = {
-      ten: Like(`%${input.search}%`),
+    const commonAndConditions = {
       trangthai: input.status,
       dv: { id: Number.parseInt(input.department) || MoreThan(0) },
       gioitinh: input.gender || Like('%%'),
     };
+    const condition = [
+      {
+        ten: Like(`%${input.search}%`),
+        ...commonAndConditions,
+      },
+      {
+        email: Like(`%${input.search}%`),
+        ...commonAndConditions,
+      },
+      { sdt: Like(`%${input.search}%`), 
+      ...commonAndConditions },
+    ];
 
     const sortField = input._sort.split(':')[0];
     const sortType = input._sort.split(':')[1];
-    const [personnel, count]:any = await Promise.all([
+    const [personnel, count]: any = await Promise.all([
       repo.find({
         skip: (input._page - 1) * input._limit,
         take: input._limit,
@@ -62,21 +73,21 @@ export const updatePersonnel = async (input) => {
   try {
     const repo = getRepository(Personnel);
     const personnel = await repo.findOne(input.id);
-    personnel.ten = input.ten || personnel.ten;
-    personnel.gioitinh = input.gioitinh || personnel.gioitinh;
-    personnel.ngaysinh = input.ngaysinh || personnel.ngaysinh;
-    personnel.dantoc = input.dantoc || personnel.dantoc;
-    personnel.tongiao = input.tongiao || personnel.tongiao;
-    personnel.quoctich = input.quoctich || personnel.quoctich;
-    personnel.email = input.email || personnel.email;
-    personnel.sdt = input.sdt || personnel.sdt;
+    personnel.ten = input.ten?.replace(/  +/g, ' ');
+    personnel.gioitinh = input.gioitinh;
+    personnel.ngaysinh = input.ngaysinh;
+    personnel.dantoc = input.dantoc?.replace(/  +/g, ' ');
+    personnel.tongiao = input.tongiao?.replace(/  +/g, ' ');
+    personnel.quoctich = input.quoctich?.replace(/  +/g, ' ');
+    personnel.email = input.email;
+    personnel.sdt = input.sdt;
     personnel.tp = input.tp || personnel.tp;
     personnel.quan = input.quan || personnel.quan;
     personnel.phuong = input.phuong || personnel.phuong;
-    personnel.diachi = input.diachi || personnel.diachi;
-    personnel.cccd = input.cccd || personnel.cccd;
-    personnel.ngaycap = input.ngaycap || personnel.ngaycap;
-    personnel.noicap = input.noicap || personnel.noicap;
+    personnel.diachi = input.diachi?.replace(/  +/g, ' ');
+    personnel.cccd = input.cccd;
+    personnel.ngaycap = input.ngaycap;
+    personnel.noicap = input.noicap?.replace(/  +/g, ' ');
     await repo.save(personnel);
     return personnel;
   } catch (error) {
@@ -97,15 +108,15 @@ export const createPersonnel = async (input) => {
       gioitinh: input.gioitinh,
       email: input.email,
       dv: input.dv,
-      ten: input.ten,
+      ten: input.ten.replace(/  +/g, ' ') || '',
       ngaysinh: input.ngaysinh,
-      nguyenquan: input.nguyenquan,
-      dantoc: input.dantoc,
-      tongiao: input.tongiao,
-      quoctich: input.quoctich,
-      ngaycap: input.ngaycap,
-      noicap: input.noicap,
-      diachi: input.diachi,
+      nguyenquan: input.nguyenquan?.replace(/  +/g, ' ') || '',
+      dantoc: input.dantoc?.replace(/  +/g, ' ') || '',
+      tongiao: input.tongiao?.replace(/  +/g, ' ') || '',
+      quoctich: input.quoctich?.replace(/  +/g, ' ') || '',
+      ngaycap: input.ngaycap?.replace(/  +/g, ' ') || '',
+      noicap: input.noicap?.replace(/  +/g, ' ') || '',
+      diachi: input.diachi?.replace(/  +/g, ' ') || '',
     };
     await personnelRepo.save(personnel);
     const contractRepo = getRepository(Contract);
@@ -123,6 +134,7 @@ export const createPersonnel = async (input) => {
     job.ns = personnel;
     job.ngaybatdau = input.ngayky;
     job.dv = input.dv;
+    job.cv = input.cv;
     await jobRepo.save(job);
 
     const salaryRepo = getRepository(Salary);
@@ -139,6 +151,17 @@ export const createPersonnel = async (input) => {
     position.cv = input.cv;
     // position.ngaybonhiem=input.ngaybonhiem
     await positionRepo.save(position);
+
+    const levelRepo = getRepository(LevelDetail);
+    let level = new LevelDetail();
+    level.ns = personnel;
+    level.lv = input.lv;
+    level.noidaotao = input.noidaotao?.replace(/  +/g, ' ') || '';
+    level.tungay = input.tungay;
+    level.denngay = input.denngay;
+    level.chuyennganh = input.chuyennganh?.replace(/  +/g, ' ') || '';
+    level.ketqua = input.ketqua?.replace(/  +/g, ' ') || '';
+    await levelRepo.save(level);
 
     return personnel;
   } catch (error) {
@@ -168,7 +191,7 @@ export const addPositionDetail = async (input) => {
       ns: input.ns,
       cv: input.cv,
       ngaybonhiem: input.ngaybonhiem,
-      ghichu: input.ghichu,
+      ghichu: input.ghichu.replace(/  +/g, ' '),
     };
     let checkPos = await repo.count({
       where: {
@@ -216,11 +239,11 @@ export const addLevelDetail = async (input) => {
     level = {
       ns: input.ns,
       lv: input.lv,
-      noidaotao: input.noidaotao,
-      chuyennganh: input.chuyennganh,
+      noidaotao: input.noidaotao.replace(/  +/g, ' '),
+      chuyennganh: input.chuyennganh.replace(/  +/g, ' '),
       tungay: input.tungay,
       denngay: input.denngay,
-      ketqua: input.ketqua,
+      ketqua: input.ketqua.replace(/  +/g, ' '),
     };
     await repo.save(level);
     return level;

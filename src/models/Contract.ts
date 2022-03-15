@@ -1,23 +1,23 @@
 import { Entity, PrimaryGeneratedColumn, Column,ManyToOne,DeleteDateColumn } from 'typeorm';
 import { Personnel } from './Personnel';
-@Entity()
+@Entity('contract')
 export class Contract {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Personnel, personnel => personnel.id)
+  @ManyToOne(() => Personnel, personnel => personnel.id,{nullable:true})
   ns: Personnel;
 
-  @Column({type:"text",default:''})
+  @Column({default:''})
   loaihd: string;
 
-  @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})
+  @Column({type:"timestamp",default: () => "CURRENT_TIMESTAMP"})
   ngayky: string;
 
-  @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})
+  @Column({type:"timestamp",default: () => "CURRENT_TIMESTAMP"})
   ngaykt: string;
 
-  @Column({type:"text",default:""})
+  @Column({type:"text"})
   ghichu: string;
 
   @Column({type:"text",nullable:true})

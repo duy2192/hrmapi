@@ -1,0 +1,6 @@
+.docker
+.gitignore
+yarn.lock
+.env
+node_modules
+build

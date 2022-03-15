@@ -2,21 +2,21 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne,DeleteDateColumn } fr
 import { Personnel } from './Personnel';
 import { Department } from './Department';
 import { Position } from './Position';
-@Entity()
+@Entity('job')
 export class Job {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Personnel, (personnel) => personnel.qtlv)
+  @ManyToOne(() => Personnel, (personnel) => personnel.qtlv,{nullable:true})
   ns: Personnel;
 
-  @ManyToOne(() => Department, (dep) => dep.qtlv)
+  @ManyToOne(() => Department, (dep) => dep.qtlv,{nullable:true})
   dv: string;
 
-  @ManyToOne(() => Position, (pos) => pos.qtlv)
+  @ManyToOne(() => Position, (pos) => pos.qtlv,{nullable:true})
   cv: string; 
 
-  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   ngaybatdau: string;
 
   @Column({type:"text",nullable:true})

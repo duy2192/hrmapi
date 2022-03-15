@@ -1,12 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column,ManyToOne,DeleteDateColumn } from 'typeorm';
 import { Personnel } from './Personnel';
 
-@Entity()
+@Entity('insurance')
 export class Insurance {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Personnel, personnel => personnel.baohiem)
+  @ManyToOne(() => Personnel, personnel => personnel.baohiem,{nullable:true})
   ns: Personnel;
 
   @Column({nullable:true})
@@ -15,13 +15,13 @@ export class Insurance {
   @Column({nullable:true})
   sothe: string;
 
-  @Column({type:"text",default:""})
+  @Column({default:""})
   noidk: string;
 
-  @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})
+  @Column({type:"timestamp",default: () => "CURRENT_TIMESTAMP"})
   tungay: string;
 
-  @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})
+  @Column({type:"timestamp",default: () => "CURRENT_TIMESTAMP"})
   denngay: string;
 
   @DeleteDateColumn()

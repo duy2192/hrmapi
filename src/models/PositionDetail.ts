@@ -1,20 +1,20 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn,DeleteDateColumn } from 'typeorm';
 import { Personnel } from './Personnel';
 import { Position } from './Position';
-@Entity()
+@Entity('position_detail')
 export class PositionDetail {
   @PrimaryGeneratedColumn()
   id?: number;
 
-  @ManyToOne(() => Personnel, (personnel) => personnel.ctcv, { primary: true })
+  @ManyToOne(() => Personnel, (personnel) => personnel.ctcv, { primary: true,nullable:true })
   ns: Personnel;
 
-  @ManyToOne(() => Position, (pos) => pos.ctcv, { primary: true })
+  @ManyToOne(() => Position, (pos) => pos.ctcv, { primary: true,nullable:true })
   cv: Position;
 
-  @Column({ type: 'date', default: () => 'CURRENT_TIMESTAMP' })
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   ngaybonhiem: string;
-  @Column({type:"text",default:''})
+  @Column({type:"text"})
   ghichu: string;
 
   @DeleteDateColumn()

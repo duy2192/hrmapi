@@ -1,14 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column,ManyToOne,DeleteDateColumn } from 'typeorm';
 import { Personnel } from './Personnel';
-@Entity()
+@Entity('reward')
 export class Reward {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Personnel, personnel => personnel.id)
+  @ManyToOne(() => Personnel, personnel => personnel.id,{nullable:true})
   ns: Personnel;
 
-  @Column({type:"date",default: () => "CURRENT_TIMESTAMP"})
+  @Column({type:"timestamp",default: () => "CURRENT_TIMESTAMP"})
   ngayqd: string;
 
   @Column({default:''})

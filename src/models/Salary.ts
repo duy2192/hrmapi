@@ -1,14 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column,ManyToOne } from 'typeorm';
 import { Personnel } from './Personnel';
-@Entity()
+@Entity('salary')
 export class Salary {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Personnel, personnel => personnel.luong)
+  @ManyToOne(() => Personnel, personnel => personnel.luong,{nullable:true})
   ns: Personnel;
 
-  @Column({type:"date", default: () => "CURRENT_TIMESTAMP"})
+  @Column({type:"timestamp", default: () => "CURRENT_TIMESTAMP"})
   ngaybatdau: string;
   
   @Column({type:"float",default:0})

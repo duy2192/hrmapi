@@ -7,13 +7,13 @@ export class Job {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Personnel, (personnel) => personnel.qtlv,{nullable:true})
+  @ManyToOne(() => Personnel, (personnel) => personnel.qtlv)
   ns: Personnel;
 
-  @ManyToOne(() => Department, (dep) => dep.qtlv,{nullable:true})
+  @ManyToOne(() => Department, (dep) => dep.qtlv)
   dv: string;
 
-  @ManyToOne(() => Position, (pos) => pos.qtlv,{nullable:true})
+  @ManyToOne(() => Position, (pos) => pos.qtlv)
   cv: string; 
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })

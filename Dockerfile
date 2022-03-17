@@ -2,8 +2,7 @@ FROM node:16.14-alpine
 
 WORKDIR /app
 
-COPY [^node_modules]* .
-RUN apk update && apk add bash
+COPY . ./
 RUN yarn install
 
 # Development

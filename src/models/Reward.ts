@@ -14,7 +14,7 @@ export class Reward {
   @Column({default:''})
   hinhthuc: string;
 
-  @Column({type:"text"})
+  @Column({type:"text",nullable: true})
   noidung: string;
 
 

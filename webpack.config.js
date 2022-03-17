@@ -19,16 +19,8 @@ module.exports ={
         test: /\.ts$/,
         use: [
           "ts-loader"
-
         ],
       },
-      // {
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //   },
-      // },
     ],
   },
   resolve: {
@@ -42,13 +34,14 @@ module.exports ={
       "http": false,
       "https": false,
       "stream": false,
-      "crypto": false,
+      "crypto": require.resolve("crypto-browserify"),
       } ,
   },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
   },
+  optimization: { minimize: false },
   externals: [nodeExternals()],
   plugins: [
     new CopyPlugin({
@@ -57,5 +50,5 @@ module.exports ={
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env)
     }),
-  ],
-};
+  ], 
+}; 

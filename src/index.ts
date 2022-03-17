@@ -46,10 +46,10 @@ app.use('/api/statistical', statisticalRouter);
 app.use('/api/insurance', insuranceRouter);
 app.use('/api/download', downloadRouter);
 app.use('/api/uploads', uploadRouter); 
-app.use('/api/utils', utilsRouter);
+app.use('/api/utils', utilsRouter); 
 
 createConnection().then(async () => {
   app.listen(PORT, () => {
     log.info('Server starting on port ' + PORT);
   });
-}).catch(error => log.error(error)); 
+}).catch(error => log.error(error));  

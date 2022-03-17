@@ -6,10 +6,10 @@ export class LevelDetail {
   @PrimaryGeneratedColumn()
   id?: number;
   
-  @ManyToOne(() => Personnel, (personnel) => personnel.ctlv, { primary: true,nullable:true })
+  @ManyToOne(() => Personnel, (personnel) => personnel.ctlv, { primary: true })
   ns: Personnel;
 
-  @ManyToOne(() => Level, (pos) => pos.ctlv, { primary: true,nullable:true })
+  @ManyToOne(() => Level, (pos) => pos.ctlv, { primary: true })
   lv: Level;
   
   @Column({nullable:true})

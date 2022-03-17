@@ -5,7 +5,7 @@ export class Salary {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Personnel, personnel => personnel.luong,{nullable:true})
+  @ManyToOne(() => Personnel, personnel => personnel.luong)
   ns: Personnel;
 
   @Column({type:"timestamp", default: () => "CURRENT_TIMESTAMP"})

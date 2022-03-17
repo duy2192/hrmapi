@@ -59,10 +59,10 @@ export class Personnel {
   @Column({ nullable: true })
   gioitinh: string;
 
-  @Column({ type: 'text',  })
+  @Column({ type: 'text', nullable: true })
   avatar?: string;
 
-  @Column({ type: 'text',  })
+  @Column({ type: 'text', nullable: true })
   nguyenquan: string;
 
   @Column({ type: 'timestamp' })

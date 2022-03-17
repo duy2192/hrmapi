@@ -5,7 +5,7 @@ export class Discipline {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Personnel, personnel => personnel.id,{nullable:true})
+  @ManyToOne(() => Personnel, personnel => personnel.id)
   ns: Personnel;
 
   @Column({type:"timestamp",default: () => "CURRENT_TIMESTAMP"})
@@ -14,7 +14,7 @@ export class Discipline {
   @Column({nullable:true})
   hinhthuc: string;
 
-  @Column({type:"text"})
+  @Column({type:"text",nullable: true})
   noidung: string;
 
 

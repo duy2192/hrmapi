@@ -6,7 +6,7 @@ export class Insurance {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Personnel, personnel => personnel.baohiem,{nullable:true})
+  @ManyToOne(() => Personnel, personnel => personnel.baohiem)
   ns: Personnel;
 
   @Column({nullable:true})

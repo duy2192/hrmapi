@@ -17,11 +17,14 @@ export class Contract {
   @Column({type:"timestamp",default: () => "CURRENT_TIMESTAMP"})
   ngaykt: string;
 
-  @Column({type:"text"})
+  @Column({type:"text",nullable: true})
   ghichu: string;
 
   @Column({type:"text",nullable:true})
   file: string;
+
+  @Column({type:"text",nullable:true})
+  filelink: string;
 
   @DeleteDateColumn()
   deletedAt?: Date;

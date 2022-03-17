@@ -7,10 +7,10 @@ export class Position {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToMany(() => Personnel, (level) => level.dv,{nullable:true})
+  @OneToMany(() => Personnel, (level) => level.dv)
   ns: Personnel[];
 
-  @OneToMany(() => Job, job => job.cv,{nullable:true})
+  @OneToMany(() => Job, job => job.cv)
   qtlv: Job[]
 
   @Column({
@@ -22,7 +22,7 @@ export class Position {
   @OneToMany(type => PositionDetail, userGroup => userGroup.cv)
   ctcv: PositionDetail[];
 
-  @Column({type:"text"})
+  @Column({type:"text",nullable: true})
   mota: string;
 
   @Column('int', { default: 1 })

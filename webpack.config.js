@@ -39,13 +39,14 @@ module.exports ={
   },
   output: {
     filename: 'bundle.js',
+    publicPath: '/',
     path: path.resolve(__dirname, 'build'),
   },
   optimization: { minimize: false },
   externals: [nodeExternals()],
   plugins: [
     new CopyPlugin({
-      patterns: [{ from: 'public', to: 'public' }],
+      patterns: [{ from: 'src/assets', to: 'assets' }],
     }),
     new webpack.DefinePlugin({
       "process.env": JSON.stringify(process.env)

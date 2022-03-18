@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import sendMail from '../utils/sendMails';
 import ejs from 'ejs';
-
 export const getUser = async (id) => {
   try {
     const repo = getRepository(User);
@@ -66,9 +65,13 @@ export const createUser = async (input: {
     user.role = input.role;
 
     await repo.save(user);
-    const send = await ejs.renderFile(__dirname + '/../../public/templates/register.ejs', {
+    const send =process.env.NODE_ENV=="development"
+    ? await ejs.renderFile(__dirname + '/../assets/templates/register.ejs', {
       data: { name: user.name, email: user.email, password: password },
-    });
+    }):
+    await ejs.renderFile('./assets/templates/register.ejs', {
+      data: { name: user.name, email: user.email, password: password },
+    })
     sendMail(send, user.email, '[Đăng ký tài khoản] ');
     return user;
   } catch (error) {

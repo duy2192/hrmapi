@@ -1,4 +1,4 @@
-import provinces from '../../public/uploads/provinces/provinces.json';
+import provinces from '../assets/provinces/provinces.json';
  
 export const getProvinces = async (input) => {
   try {

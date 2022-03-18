@@ -97,9 +97,12 @@ export const login = async (input: { identifier: string; password: string }) => 
       const resetToken = crypto.randomBytes(10).toString('hex');
       const hash = await bcrypt.hashSync(resetToken, 10);
       const link = process.env.CLIENT_DOMAIN + `auth/${user.id}/${resetToken}`;
-      const send = await ejs.renderFile(__dirname + '/../../public/templates/unBlockAccount.ejs', {
+      const send =process.env.NODE_ENV=="development"
+      ? await ejs.renderFile(__dirname + '/../../public/templates/unBlockAccount.ejs', {
         data: { name: user.name, username: user.username, link: link },
-      });
+      }):await ejs.renderFile('./assets/templates/unBlockAccount.ejs', {
+        data: { name: user.name, username: user.username, link: link },
+      })
       sendMail(send, user.email, '[Mở khóa tài khoản] ');
       user.unblocktoken = hash; 
       repo.save(user);
@@ -122,9 +125,11 @@ export const login = async (input: { identifier: string; password: string }) => 
         const resetToken = crypto.randomBytes(10).toString('hex');
         const hash = await bcrypt.hashSync(resetToken, 10);
         const link = process.env.CLIENT_DOMAIN + `auth/${user.id}/${resetToken}`;
-        const send = await ejs.renderFile(__dirname + '/../../public/templates/unBlockAccount.ejs', {
+        const send =process.env.NODE_ENV=="development"? await ejs.renderFile(__dirname + '/../../public/templates/unBlockAccount.ejs', {
           data: { name: user.name, username: user.username, link: link },
-        });
+        }):await ejs.renderFile('./assets/templates/unBlockAccount.ejs', {
+          data: { name: user.name, username: user.username, link: link },
+        })
         sendMail(send, user.email, '[Mở khóa tài khoản] ');
         user.unblocktoken = hash;
       }

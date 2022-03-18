@@ -7,6 +7,11 @@ module.exports ={
   mode: 'production',
   entry: './src/index.ts',
   devtool: 'inline-source-map',
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+},
   node: {
     __dirname: true,
     __filename: true,

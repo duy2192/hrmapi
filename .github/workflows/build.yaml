@@ -43,7 +43,7 @@ jobs:
       #     cache-from: type=local,src=/tmp/.buildx-cache
       #     cache-to: type=local,dest=/tmp/.buildx-cache
 
-      # - name: Verify
-      #   run: echo ${{ steps.docker_build.outputs.digest }}
+      - name: Verify
+        run: echo ${{ steps.gen_tags }}
       
       # - name: CD

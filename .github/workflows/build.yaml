@@ -9,12 +9,8 @@ jobs:
       - name: Build and push
         id: gen_tags
         run: |
-          if [[ $GITHUB_REF == 'refs/tags/'* ]]; then
-            TAGS='["'${{ secrets.DOCKERHUB_USERNAME }}'/hrmapi:latest","'${{ secrets.DOCKERHUB_USERNAME }}'/hrmapi:'${GITHUB_REF/refs\/tags\//}'"]'
-          else
-            TAGS='["user/image:latest"]'
-          fi
-          echo ${GIT_SHA::7}
+          GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c1-7)
+          echo $GITHUB_SHA_SHORT
       # - name: Checkout
       #   uses: actions/checkout@v2
 

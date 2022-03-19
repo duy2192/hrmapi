@@ -14,7 +14,7 @@ jobs:
           else
             TAGS='["user/image:latest"]'
           fi
-          echo $(git rev-parse --short "$GITHUB_SHA")
+          echo ${GIT_SHA::7}
       # - name: Checkout
       #   uses: actions/checkout@v2
 

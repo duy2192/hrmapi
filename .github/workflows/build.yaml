@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      -- name: Build and push
+      - name: Build and push
         id: gen_tags
         run: |
           if [[ $GITHUB_REF == 'refs/tags/'* ]]; then

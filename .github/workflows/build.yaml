@@ -44,6 +44,6 @@ jobs:
       #     cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Verify
-        run: echo ${{ steps.gen_tags }}
+        run: echo ${{ steps.gen_tags.outputs.digest }}
       
       # - name: CD

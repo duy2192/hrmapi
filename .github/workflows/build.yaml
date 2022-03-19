@@ -10,7 +10,7 @@ jobs:
         id: gen_tags
         run: |
           GITHUB_SHA_SHORT=$(echo $GITHUB_SHA | cut -c1-7)
-          echo $GITHUB_SHA_SHORT
+          echo '::set-output name=tags::'$GITHUB_SHA_SHORT
       # - name: Checkout
       #   uses: actions/checkout@v2
 
@@ -44,6 +44,6 @@ jobs:
       #     cache-to: type=local,dest=/tmp/.buildx-cache
 
       - name: Verify
-        run: echo ${{env.gen_tags}}
+        run: echo ${{steps.gen_tags.outputs.tags}}
       
       # - name: CD

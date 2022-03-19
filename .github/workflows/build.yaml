@@ -16,8 +16,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_ACCESS_TOKEN }}
 
       - name: Get tags commit
-          id: gen_tags
-          run: |
+        id: gen_tags
+        run: |
             TAGS=$(echo $GITHUB_SHA | cut -c1-7)
             echo '::set-output name=tags::'$TAGS
       - name: Setup Docker Buildx
@@ -31,7 +31,7 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
-            
+
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v2.10.0
         id: docker_build

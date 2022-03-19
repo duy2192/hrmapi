@@ -18,7 +18,7 @@ jobs:
           else
             TAGS='["user/image:latest"]'
           fi
-          echo $GITHUB_REF
+          echo ${{GITHUB_REF}}
 
       # - name: Login Docker Hub
       #   uses: docker/login-action@v1

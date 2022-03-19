@@ -5,3 +5,4 @@ yarn.lock
 public/uploads/data/*
 yarn-error.log
 .docker
+.env.production

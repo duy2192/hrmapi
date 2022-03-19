@@ -1,6 +1,11 @@
 .docker
 .gitignore
 yarn.lock
-.env
 node_modules
 build
+.env
+.env.production
+Dockerfile
+docker-compose.yml
+yarn-error.log
+.prettierrc

@@ -1,21 +1,15 @@
 version: '3.7'
 services:
-  # app:
-  #   image: hrmapp/api:v1
-  #   volumes:
-  #     - ./:/app
-  #   environment: 
-  #     - DB_HOST=${DB_HOST}
-  #     - DB_DBNAME=${DB_DBNAME}
-  #     - PORT=${PORT}
-  #     - DB_PORT=${DB_PORT}
-  #   ports:
-  #     - "${PORT}:${PORT}" 
-  #   restart: unless-stopped
-  #   depends_on:
-  #       - db
-  #   networks:
-  #     - hrmapp
+  app:
+    image: hrmapp/api:v1
+    ports:
+      - "${PORT}:${PORT}" 
+    restart: unless-stopped
+    env_file: ./.env.production
+    depends_on:
+        - db
+    networks:
+      - hrmapp
 
   db:
     image: mysql:8.0

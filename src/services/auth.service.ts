@@ -158,7 +158,9 @@ export const forgotPassword = async (input: { email: string }) => {
     const token = await jwt.sign(jsonObject, process.env.JWT_KEY, {
       expiresIn: 3600,
     });
-    const send = await ejs.renderFile(__dirname + '/../../public/templates/forgotPwd.ejs', {
+    const send =process.env.NODE_ENV=="development"? await ejs.renderFile(__dirname + '/../../public/templates/forgotPwd.ejs', {
+      data: { name: user.name, email: user.email, key: resetToken },
+    }):await ejs.renderFile('./assets/templates/forgotPwd.ejs', {
       data: { name: user.name, email: user.email, key: resetToken },
     });
     sendMail(send, user.email, '[Xác minh tài khoản] ');

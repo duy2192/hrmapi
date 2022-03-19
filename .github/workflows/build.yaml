@@ -14,7 +14,7 @@ jobs:
           else
             TAGS='["user/image:latest"]'
           fi
-          echo '::set-output name=tags::'$TAGS
+          echo $TAGS
       # - name: Checkout
       #   uses: actions/checkout@v2
 

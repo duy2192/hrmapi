@@ -1,7 +1,7 @@
 name: hrmapp/api
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 jobs:
   docker:
     runs-on: ubuntu-latest

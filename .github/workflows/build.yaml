@@ -50,7 +50,6 @@ jobs:
       - name: deploy
         shell: bash
         run: |
-          apt-get update && apt-get install openssh-client bash
           eval $(ssh-agent -s)
           bash -c 'ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")'
           mkdir -p ~/.ssh

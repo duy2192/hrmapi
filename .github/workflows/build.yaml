@@ -46,10 +46,7 @@ jobs:
 
       - name: Verify
         run: echo ${{ steps.docker_build.outputs.digest }}
-
-
-
-  deploy:
+      
       - name: deploy
         uses: ./
         with:
@@ -59,4 +56,7 @@ jobs:
           script: |
             whoami
             ls -al
+
+
+
       

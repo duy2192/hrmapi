@@ -55,5 +55,5 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SSH_SERVER_IP }} >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }}
+          echo ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }}
       

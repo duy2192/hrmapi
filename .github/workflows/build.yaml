@@ -50,11 +50,11 @@ jobs:
       - name: deploy
         shell: bash
         run: |
-          apt update && apt install openssh-client bash
+          apt-get update && apt-get install openssh-client bash
           eval $(ssh-agent -s)
-          bash -c 'ssh-add <(echo "$SSH_PRIVATE_KEY")'
+          bash -c 'ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")'
           mkdir -p ~/.ssh
-          ssh-keyscan -H $SSH_SERVER_IP >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets.SSH_SERVER_IP }} >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
-          ssh $SSH_USER@$SSH_SERVER_IP
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }}
       

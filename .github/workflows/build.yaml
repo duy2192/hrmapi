@@ -48,6 +48,7 @@ jobs:
         run: echo ${{ steps.docker_build.outputs.digest }}
 
       - name: Deploy
+        shell: bash
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_PRIVATE_KEY" > ../private.key

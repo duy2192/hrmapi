@@ -54,9 +54,12 @@ jobs:
           sudo chmod 600 ../private.key
           echo "$SSH_SERVER_IP" > ~/.ssh/known_hosts
 
-          ssh $SSH_USER@$SSH_SERVER_IP
+          ssh -i $SSH_KEY_PATH $SSH_USER@$SSH_SERVER_IP
           whoami
-
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
       
 
 

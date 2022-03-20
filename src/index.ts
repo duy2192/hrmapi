@@ -23,7 +23,6 @@ import cors from 'cors';
 import reqlogger from "./middleware/logger.middleware"
 import "reflect-metadata";
 
-
 const app:Application = express();
 const PORT = process.env.PORT; 
 

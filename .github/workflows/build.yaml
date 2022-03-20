@@ -46,4 +46,13 @@ jobs:
 
       - name: Verify
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: deploy
+        run: |
+          eval $(ssh-agent -s)
+          bash -c 'ssh-add <(echo "$SSH_PRIVATE_KEY")'
+          mkdir -p ~/.ssh
+          ssh-keyscan -H $SSH_SERVER_IP >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+          ssh $SSH_USER@$SSH_SERVER_IP
       

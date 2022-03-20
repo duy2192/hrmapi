@@ -47,13 +47,14 @@ jobs:
       - name: Verify
         run: echo ${{ steps.docker_build.outputs.digest }}
 
-      - name: deploy
-        shell: bash
-        run: |
-          eval $(ssh-agent -s)
-          bash -c 'ssh-add <(echo "${{ secrets.SSH_PRIVATE_KEY }}")'
-          mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.SSH_SERVER_IP }} >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-          echo ${{ secrets.SSH_USER }}@${{ secrets.SSH_SERVER_IP }}
+      - name: multiple command
+        uses: ./
+        with:
+          host: ${{ secrets.SSH_SERVER_IP }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            whoami
+            ls -al
+
       

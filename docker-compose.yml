@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   app:
-    image: hrmapp/api:v1
+    image: duyanh2912/hrmapi:latest
     ports:
       - "${PORT}:${PORT}" 
     restart: unless-stopped

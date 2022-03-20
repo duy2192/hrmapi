@@ -47,15 +47,6 @@ jobs:
       - name: Verify
         run: echo ${{ steps.docker_build.outputs.digest }}
       
-      - name: deploy
-        uses: ./
-        with:
-          host: ${{ secrets.SSH_SERVER_IP }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            whoami
-            ls -al
 
 
 

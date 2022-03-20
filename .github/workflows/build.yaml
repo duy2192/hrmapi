@@ -55,8 +55,11 @@ jobs:
           sudo chmod 600 ../private.key
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
 
-          ssh -t -t -i $SSH_KEY_PATH $SSH_USER@$SSH_SERVER_IP "whoami;
-            exit;
+          ssh -t -t -i $SSH_KEY_PATH $SSH_USER@$SSH_SERVER_IP "cd ${PATH_TO_PROJECT};
+          docker-compose down;
+          docker pull ${DOCKERHUB_IMAGE}:latest;
+          docker-compose up -d;
+          docker image prune -f;
           "
         env:
           SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
@@ -64,6 +67,8 @@ jobs:
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
           SSH_USER: ${{ secrets.SSH_USER }}
+          DOCKERHUB_IMAGE: ${{ secrets.DOCKERHUB_IMAGE }}
+          PATH_TO_PROJECT: ${{ secrets.PATH_TO_PROJECT }}
       
 
 
